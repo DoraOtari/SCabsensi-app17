@@ -1,17 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('bootstrap5')
+@section('konten')
+    <div class="row">
+        <div class="col">
+            <h1 class="display-3"><i class="bi-calendar"></i> Dashboard Presensi</h1>
+            <p class="lead">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+            </p>
+        </div>
+        <div class="col">
+            <img src="https://img.freepik.com/free-vector/appointment-booking-smartphone_23-2148559902.jpg?w=740&t=st=1692703109~exp=1692703709~hmac=8a1a8c369ab2126ad308d5d8327aab920572c7b1483380ccadeb88ddf3ccf41e" alt="">
         </div>
     </div>
-</x-app-layout>
+@endsection
