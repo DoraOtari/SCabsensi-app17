@@ -9,7 +9,8 @@ class JabatanController extends Controller
 {
    public function tampil()
    {
-      return view('jabatan.tampil');
+      // perintah untuk memanggil halaman view
+      return view('jabatan.tampil', ['jabatan' => Jabatan::all()]);
    }
 
    public function buat()
@@ -31,5 +32,13 @@ class JabatanController extends Controller
    public function ubah()
    {
     
+   }
+
+   public function hapus($id)
+   {
+      // perintah hapus data
+      Jabatan::destroy($id);
+      // perintah kembali ke uri lain
+      return redirect('/jabatan')->with('pesan', 'Berhasil hapus data');
    }
 }
