@@ -3,7 +3,10 @@
     <div class="col-lg-6 mx-auto">
         <div class="card border-0">
             <div class="card-body">
+            <div class="d-flex gap-3">
+                <a href="{{ url('jabatan') }}" class="btn  btn-dark"><i class="bi-arrow-left"></i></a>
                 <h4><i class="bi-ui-checks-grid"></i> Form</h4>
+            </div>
                 <hr>
                 <form action="{{ url('/jabatan') }}" method="post">
                     @csrf

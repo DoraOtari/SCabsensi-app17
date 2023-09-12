@@ -29,7 +29,7 @@
                                 <td>{{ $col->nama }}</td>
                                 <td>{{ $col->status }}</td>
                                 <td>Rp. {{ number_format($col->gaji,2,',','.')  }}</td>
-                                <td><a href="" class="btn btn-dark"><i class="bi-pen"></i></a></td>
+                                <td><a href="{{ url('jabatan/'.$col->id.'/ubah') }}" class="btn btn-dark"><i class="bi-pen"></i></a></td>
                                 <td>
                                     <form action="{{ url('jabatan/'.$col->id) }}" method="post">
                                         @csrf

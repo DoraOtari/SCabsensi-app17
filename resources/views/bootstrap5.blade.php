@@ -22,10 +22,13 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-start align-items-center flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="{{ url('dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="{{ url('jabatan') }}">Jabatan</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('karyawan') }}">Karyawan</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

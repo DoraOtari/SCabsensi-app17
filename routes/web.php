@@ -36,4 +36,6 @@ Route::controller(JabatanController::class)->group(function(){
     Route::get('/jabatan/buat', 'buat');
     Route::post('/jabatan','simpan');
     Route::delete('jabatan/{id}','hapus');
+    Route::get('jabatan/{id}/ubah', 'ubah');
+    Route::put('jabatan/{id}', 'update');
 });

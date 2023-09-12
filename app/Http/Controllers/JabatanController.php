@@ -26,12 +26,15 @@ class JabatanController extends Controller
          'status' => $req->status,
       ]);
 
-      return redirect('/jabatan');
+      return redirect('/jabatan')->with('pesan', 'Berhasil tambah data');
    }
 
-   public function ubah()
+   public function ubah($id)
    {
-    
+   // perintah mengambil satu data berdasarkan id 
+    $jabatan = Jabatan::find($id);
+   // perintah untuk mengirim data ke halaman ubah
+    return view('jabatan.ubah', ['jabatan' => $jabatan]);
    }
 
    public function hapus($id)
@@ -40,5 +43,17 @@ class JabatanController extends Controller
       Jabatan::destroy($id);
       // perintah kembali ke uri lain
       return redirect('/jabatan')->with('pesan', 'Berhasil hapus data');
+   }
+   
+   public function update($id, Request $req)
+   {
+      // perintah update
+      Jabatan::where('id', $id)->update([
+         'nama'   => $req->nama,
+         'gaji'   => $req->gaji,
+         'status' => $req->status
+      ]);
+      // perintah mengalihkan ke halaman tampil beserta notifikasi
+      return redirect('/jabatan')->with('pesan', 'Berhasil update data');
    }
 }
