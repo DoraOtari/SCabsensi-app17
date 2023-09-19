@@ -3,7 +3,8 @@
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\KaryawanController;
+use Illuminate\Support\Facades\Http;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,4 +39,11 @@ Route::controller(JabatanController::class)->group(function(){
     Route::delete('jabatan/{id}','hapus');
     Route::get('jabatan/{id}/ubah', 'ubah');
     Route::put('jabatan/{id}', 'update');
+});
+
+Route::resource('/karyawan', KaryawanController::class);
+
+Route::get('/test', function(){
+    $provinsi = HTTP::get("https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json");
+    dd($provinsi->object());
 });
