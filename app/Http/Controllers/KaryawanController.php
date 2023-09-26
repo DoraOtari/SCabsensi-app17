@@ -14,7 +14,8 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        return view('karyawan.index');
+        $karyawan = Karyawan::all();
+        return view('karyawan.index', compact('karyawan'));
     }
 
     /**
@@ -37,7 +38,18 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Karyawan::create([
+            'nama'          => $request->nama,
+            'NIK'           => $request->nik,
+            'user_id'       => $request->user_id,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jabatan_id'    => $request->jabatan_id,
+            'provinsi'      => $request->provinsi,
+            'kota'          => $request->kota,
+            'alamat'        => $request->alamat,
+        ]);
+
+        return redirect('/karyawan')->with('pesan', 'Berhasil tambah data karyawan');
     }
 
     /**

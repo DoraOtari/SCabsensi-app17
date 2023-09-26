@@ -28,6 +28,10 @@
                         </select>
                     </div>
                     <livewire:api-daerah />
+                    <div class="my-3">
+                      <textarea class="form-control" name="alamat"  placeholder="masukan alamat"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark float-end"><i class="bi-send"></i> Submit</button>
                 </form>
             </div>
         </div>
