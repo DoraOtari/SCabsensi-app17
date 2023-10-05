@@ -21,20 +21,37 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Jabatan</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>Detail</th>
+                            <th>Edit</th>
+                            <th>Hapus</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($karyawan as $item)
                             <tr>
-                                <td><img src="" alt=""></td>
-                                <td>{{ $item->nik }}</td>
+                                <td>
+                                    @if ($item->user->avatar)
+                                    <img src="{{ asset('storage/'.$item->user->avatar) }}" style="width: 40px; aspect-ratio:1/1;border-radius: 50%">
+                                    @else
+                                    <img src="{{ asset('no-profil.png') }}" style="width: 40px; aspect-ratio:1/1;border-radius: 50%">
+                                    @endif
+                                </td>
+                                <td>
+                                    <span class="badge bg-dark">
+                                        {{ $item->NIK }}
+                                    </span>
+                                </td>
                                 <td>{{ $item->nama }}</td>
-                                <td>email</td>
-                                <td>email</td>
-                                <td>jabatan</td>
+                                <td>{{ $item->user->email }}</td>
+                                <td>{{ $item->jabatan->nama }}</td>
+                                <td><button class="btn btn-dark "><i class="bi-eye"></i></button></td>
+                                <td><a href="{{ url('karyawan/'.$item->id) }}" class="btn btn-primary"><i class="bi-pen"></i></a></td>
+                                <td>
+                                    <form action="{{ url('karyawan/'.$item->id) }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-danger"><i class="bi-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                         <tr>

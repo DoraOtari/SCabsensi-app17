@@ -15,8 +15,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::with('jabatan')->get();
-        dd($karyawan);
+        $karyawan = Karyawan::with(['jabatan','user'])->get();
         return view('karyawan.index', compact('karyawan'));
     }
 
