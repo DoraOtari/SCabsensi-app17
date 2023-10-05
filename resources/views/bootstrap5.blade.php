@@ -9,7 +9,7 @@
     @livewireStyles
   </head>
   <body>
-    <nav class="navbar bg-white navbar-expand-lg">
+    <nav class="navbar nav-underline bg-white navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><i class="bi bi-windows"></i> Presensi App</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -23,13 +23,16 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-start align-items-center flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{ url('dashboard') }}">Dashboard</a>
+                  <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('jabatan') }}">Jabatan</a>
+                  <a class="nav-link {{ Request::is('jabatan') ? 'active' : '' }}" href="{{ url('jabatan') }}">Jabatan</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url('karyawan') }}">Karyawan</a>
+                  <a class="nav-link {{ Request::is('karyawan') ? 'active' : '' }}" href="{{ url('karyawan') }}">Karyawan</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ Request::is('profil') ? 'active' : '' }}" href="{{ url('profil') }}">Profil</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,6 +56,10 @@
           </div>
         </div>
       </nav>
+      <section id="profil" class="container d-flex align-items-center">
+        <img src="{{ asset('storage/'.Auth::user()->avatar) ?? asset('no-profil.png') }}" style="width: 45px;aspect-ratio:1/1" class="rounded-circle" >
+        <h4 class="lead text-uppercase ms-2">{{ Auth::user()->name }}</h4>
+      </section>
     <main>
       @yield('konten')
     </main>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -14,7 +15,8 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::all();
+        $karyawan = Karyawan::with('jabatan')->get();
+        dd($karyawan);
         return view('karyawan.index', compact('karyawan'));
     }
 
@@ -95,5 +97,25 @@ class KaryawanController extends Controller
     public function destroy(Karyawan $karyawan)
     {
         //
+    }
+
+    public function profil()
+    {
+        return view('karyawan.upload-foto');
+    }
+
+    public function upload(Request $request)
+    {
+        $valid = $request->validate([
+            'avatar' => 'required|max:500' // hanya boleh upload maksimal 500
+        ]);
+
+        $foto = $request->avatar->store('PROFIL'); // jika lolos validasi simpan foto di folder profil
+        
+        User::where('id', auth()->user()->id)->update([
+            'avatar' => $foto
+        ]); // simpan nama foto di database
+       
+        return redirect('/profil')->with('pesan', 'Berhasil Upload Foto Profil');
     }
 }

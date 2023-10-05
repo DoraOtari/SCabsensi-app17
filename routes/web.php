@@ -42,8 +42,5 @@ Route::controller(JabatanController::class)->group(function(){
 });
 
 Route::resource('/karyawan', KaryawanController::class);
-
-Route::get('/test', function(){
-    $provinsi = HTTP::get("https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json");
-    dd($provinsi->object());
-});
+Route::get('/profil',[KaryawanController::class, 'profil']);
+Route::post('/upload', [KaryawanController::class, 'upload']);
