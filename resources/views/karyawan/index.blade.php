@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($karyawan as $item)
+                        @forelse ($karyawan as $key => $item)
                             <tr>
                                 <td>
                                     @if ($item->user->avatar)
@@ -44,7 +44,12 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->user->email }}</td>
                                 <td>{{ $item->jabatan->nama }}</td>
-                                <td><button class="btn btn-dark "><i class="bi-eye"></i></button></td>
+                                <td>
+                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key }}" >
+                                        <i class="bi-eye"></i>
+                                    </button>
+                                    @include('karyawan.detail') 
+                                </td>
                                 <td><a href="{{ url('karyawan/'.$item->id) }}" class="btn btn-primary"><i class="bi-pen"></i></a></td>
                                 <td>
                                     <form action="{{ url('karyawan/'.$item->id) }}" method="post">
